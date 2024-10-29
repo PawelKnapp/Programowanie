@@ -1,93 +1,68 @@
 using Microsoft.AspNetCore.Mvc;
 using WebApplication1.Models;
+using WebApplication1.Models.Services;
 
 namespace WebApplication1.Controllers;
-
-public class ContactController : Controller
-{
-
-    private static Dictionary<int, ContactModel> _contacts = new()
+    public class ContactController : Controller
     {
-        {
-            1,
-            new ContactModel()
-            {
-                Id = 1,
-                FirstName = "Paweł",
-                LastName = "Knap",
-                Email = "pk@wsei.edu.p",
-                PhoneNumber = "123 123 123",
-                BirthDate = new DateOnly(2003, 06, 17)
-            }
-        },
-        {
-            2,
-            new ContactModel()
-            {
-                Id = 2,
-                FirstName = "Mateusz",
-                LastName = "Duda",
-                Email = "md@wsei.edu.p",
-                PhoneNumber = "123 321 123",
-                BirthDate = new DateOnly(2004, 06, 21)
-            }
-        },
-        {
-            3,
-            new ContactModel()
-            {
-                Id = 3,
-                FirstName = "Dominik",
-                LastName = "Korbiel",
-                Email = "dk@wsei.edu.p",
-                PhoneNumber = "123 123 321",
-                BirthDate = new DateOnly(2003, 09, 22)
-            }
-        }
-    };
+        private  readonly IContactService _contactService;
 
-    private static int currentId = 3;
-    
-    // Lista kontaktów, przycisk dodawania kontaktu
-    public IActionResult Index()
-    {
-        return View(_contacts);
-    }
-    
-    // Formularz dodawania kontaktu
-    public IActionResult Add()
-    {
-        return View();
-    }
-
-    // Odebranie danych z formularza, walidacja i dodanie kontaktu do kolekcji
-    [HttpPost]
-    public IActionResult Add(ContactModel model)
-    {
-        if (!ModelState.IsValid)
+        public ContactController(IContactService contactService)
         {
-            // wyświetlenie ponowne formularza z błędami
-            return View(model);
+            _contactService = contactService;
         }
 
-        model.Id = ++currentId;
-        _contacts.Add(model.Id, model);
-        return View("Index", _contacts);
-    }
+        // GET: ContactController
+        public ActionResult Index()
+        {
+            return View(_contactService.GetAll());
+        }
 
-    public IActionResult Delete(int id)
-    {
-        _contacts.Remove(id);
-        return View("Index", _contacts);
-    }
+        // GET: ContactController/Details/5
+        public ActionResult Details(int id)
+        {
+            return View(_contactService.GetById(id));
+        }
 
-    public IActionResult Edit()
-    {
-        throw new NotImplementedException();
-    }
+        // GET: ContactController/Create
+        public ActionResult Add()
+        {
+            return View();
+        }
 
-    public IActionResult Details()
-    {
-        throw new NotImplementedException();
+        // POST: ContactController/Create
+        [HttpPost]
+        public ActionResult Add(ContactModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+            _contactService.Add(model);
+            return RedirectToAction(nameof(Index));
+        }
+
+        // GET: ContactController/Edit/5
+        public ActionResult Edit(int id)
+        {
+            return View(_contactService.GetById(id));
+        }
+
+        // POST: ContactController/Edit/5
+        [HttpPost]
+        public ActionResult Edit(ContactModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+            _contactService.Update(model);
+            return RedirectToAction(nameof(System.Index));
+        }
+        
+        public ActionResult Delete(int id, ContactModel model)
+        {
+            _contactService.Delete(id);
+            return RedirectToAction(nameof(Index));
+        }
     }
-}

@@ -36,5 +36,19 @@
         <input class="form-control" asp-for="BirthDate"/>
         <span class="text-danger" asp-validation-for="BirthDate"></span>
     </div>
+
+    <div class="mb-3">
+        <label class="form-label" asp-for="Category">Kategoria</label>
+        <select 
+            class="form-control"
+            asp-for="Category"
+            asp-items="@Html.GetEnumSelectList<Category>()">
+        </select>
+        <span class="text-danger" asp-validation-for="Category"></span>
+    </div>
+    
+    <div class = "mb-md-3">
     <button class="btn btn-outline-primary" type="submit">Zapisz</button>
+    </div>
+    
 </form>
