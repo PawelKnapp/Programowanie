@@ -8,9 +8,13 @@ public class ContactMapper
         {
             Id = arg.Id,
             LastName = arg.LastName,
+            FirstName = arg.FirstName,
             BirthDate = arg.BirthDate,
             PhoneNumber = arg.PhoneNumber,
             Email = arg.Email,
+            
+            Organization = arg.Organization,
+            OrganizationId = arg.OrganizationId
         };
     }
 
@@ -20,9 +24,13 @@ public class ContactMapper
         {
             Id = arg.Id,
             LastName = arg.LastName,
+            FirstName = arg.FirstName,
             BirthDate = arg.BirthDate,
             PhoneNumber = arg.PhoneNumber,
             Email = arg.Email,
+            
+            Organization = arg.Organization,
+            OrganizationId = arg.OrganizationId            
         };
     }
 }

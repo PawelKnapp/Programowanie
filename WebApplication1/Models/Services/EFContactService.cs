@@ -1,8 +1,9 @@
-﻿namespace WebApplication1.Models.Services;
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace WebApplication1.Models.Services;
 
 public class EFContactService: IContactService
 {
-
     private readonly AppDbContext _context;
 
     public EFContactService(AppDbContext context)
@@ -24,7 +25,7 @@ public class EFContactService: IContactService
 
     public void Delete(int id)
     {
-        _context.Contacts.Remove(new ContactEntity(){Id = id});
+        _context.Contacts.Remove(new ContactEntity() { Id = id });
         _context.SaveChanges();
     }
 
@@ -37,7 +38,12 @@ public class EFContactService: IContactService
 
     public ContactModel? GetById(int id)
     {
-       var entity = _context.Contacts.Find(id);
-       return entity != null ? ContactMapper.FromEntity(entity) : null;
+        var entity = _context.Contacts.Find(id);
+        return entity != null ? ContactMapper.FromEntity(entity) : null;
+    }
+
+    public List<OrganizationEntity> GetOrganizations()
+    {
+        return _context.Organizations.ToList();
     }
 }

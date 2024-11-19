@@ -45,11 +45,11 @@ public class MemoryContactService: IContactService
         }
     };
 
-    private int currentId = 3;
+    private int _index = 3;
     
     public void Add(ContactModel model)
     {
-        model.Id = ++currentId;
+        model.Id = ++_index;
         _contacts.Add(model.Id, model);
     }
 
@@ -74,5 +74,10 @@ public class MemoryContactService: IContactService
     public ContactModel? GetById(int id)
     {
         return _contacts[id];
+    }
+
+    public List<OrganizationEntity> GetOrganizations()
+    {
+        throw new NotImplementedException();
     }
 }
