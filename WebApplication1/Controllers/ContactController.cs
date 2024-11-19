@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using WebApplication1.Models;
@@ -5,6 +6,7 @@ using WebApplication1.Models.Services;
 
 namespace WebApplication1.Controllers
 {
+    [Authorize]
     public class ContactController : Controller
     {
         private readonly IContactService _contactService;
@@ -14,11 +16,13 @@ namespace WebApplication1.Controllers
             _contactService = contactService;
         }
 
+        [AllowAnonymous]
         public IActionResult Index()
         {
             return View(_contactService.GetAll());
         }
-
+        
+        [Authorize(Roles = "admin")]
         public IActionResult Add()
         {
             ContactModel model = new ContactModel();
@@ -30,7 +34,8 @@ namespace WebApplication1.Controllers
                 }).ToList();
             return View(model);
         }
-
+        
+        [Authorize(Roles = "admin")]
         [HttpPost]
         public IActionResult Add(ContactModel model)
         {
