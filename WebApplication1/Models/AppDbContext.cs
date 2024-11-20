@@ -143,10 +143,10 @@ public class AppDbContext: IdentityDbContext<IdentityUser>
                 new ContactEntity()
                 {
                     Id = 1,
-                    FirstName = "ewa",
-                    LastName = "bak",
+                    FirstName = "Marian",
+                    LastName = "Nowak",
                     BirthDate = new DateOnly(2000, 10, 10),
-                    Email = "ewabak@gmail.com",
+                    Email = "mariannowak@gmail.com",
                     PhoneNumber = "497290407",
                     Created = DateTime.Now,
                     OrganizationId = 101
@@ -156,11 +156,11 @@ public class AppDbContext: IdentityDbContext<IdentityUser>
                 new ContactEntity()
                 {
                     Id = 2,
-                    FirstName = "flf",
-                    LastName = "bhfyuk",
+                    FirstName = "Andrzej",
+                    LastName = "Kowalski",
                     BirthDate = new DateOnly(1997, 10,10),
-                    Email = "vbsruihbuiwhak@gmail.com",
-                    PhoneNumber = "497085668",
+                    Email = "andrzejkowalski@gmail.com",
+                    PhoneNumber = "518659624",
                     Created = DateTime.Now,
                     OrganizationId = 102
                             
