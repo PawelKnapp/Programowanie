@@ -45,15 +45,15 @@ namespace WebApplication1.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "d2d868df-ddb2-43bd-8ba6-d7d269713f6e",
-                            ConcurrencyStamp = "d2d868df-ddb2-43bd-8ba6-d7d269713f6e",
+                            Id = "7ca08e31-9020-46f7-97fa-83646eb9f4bb",
+                            ConcurrencyStamp = "7ca08e31-9020-46f7-97fa-83646eb9f4bb",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "0083ca6f-7f63-45d7-8777-37b1da9ec52b",
-                            ConcurrencyStamp = "0083ca6f-7f63-45d7-8777-37b1da9ec52b",
+                            Id = "9cfbe9c2-1a0c-4fa4-8554-1bdde079a7c6",
+                            ConcurrencyStamp = "9cfbe9c2-1a0c-4fa4-8554-1bdde079a7c6",
                             Name = "user",
                             NormalizedName = "USER"
                         });
@@ -148,33 +148,33 @@ namespace WebApplication1.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "5d5814a4-53c4-4396-ad7a-c4ac22aad945",
+                            Id = "ffad3d54-b0c9-4085-8f9c-7dcb3d13bb87",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "14929785-4897-4750-9f18-1a6784284de7",
+                            ConcurrencyStamp = "fce063a3-b97f-47a2-92a6-c73de56d47d8",
                             Email = "admin@wsei.edu.pl",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@WSEI.EDU.PL",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEGC32C3NYjauXb9Ghk/1biKmId33Q/MNp9LW66IfP+rgs1dRUnw6szwq84p8imSB2Q==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEA3NL+U+iwewJY4i+iM+LRKaiaA/qUwcOd+vsnw8HMECk3tct1xjotRrAnOzqmADxA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d45df357-0119-46c4-84c7-6c83f7aa7a45",
+                            SecurityStamp = "08e6b99e-07e7-462a-9518-486b93119a2b",
                             TwoFactorEnabled = false,
                             UserName = "admin"
                         },
                         new
                         {
-                            Id = "2914d521-9db0-40c0-b0e6-768ca01f27c9",
+                            Id = "1908bcdd-7a4d-4cf0-87dd-83cbe8d932b7",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "4119d673-a4ea-46b4-9b1c-d24a5a17eeb7",
+                            ConcurrencyStamp = "53c95ce7-2ac1-477f-a604-b718b4c28351",
                             Email = "user@wsei.edu.pl",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "KAROL@WSEI.EDU.PL",
                             NormalizedUserName = "KAROL",
-                            PasswordHash = "AQAAAAIAAYagAAAAEMMUQr6o7c9tP5iqFmiLppqgX2spHmSSaLG6pDBVzfvYeFWu9YfYd8K37cCRg8VpOA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEAj9h+TZAOzs5voGRKHFM2QRcNWQ59znQiTYCEPilyO1FquiFBPYEmUKEx93JvMLmw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "40bc66df-d6b8-4a3c-9a2f-a1a7a6e8a492",
+                            SecurityStamp = "8557d51f-59ce-440d-a167-7fb8aa11e107",
                             TwoFactorEnabled = false,
                             UserName = "Karol"
                         });
@@ -242,18 +242,18 @@ namespace WebApplication1.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "5d5814a4-53c4-4396-ad7a-c4ac22aad945",
-                            RoleId = "d2d868df-ddb2-43bd-8ba6-d7d269713f6e"
+                            UserId = "ffad3d54-b0c9-4085-8f9c-7dcb3d13bb87",
+                            RoleId = "7ca08e31-9020-46f7-97fa-83646eb9f4bb"
                         },
                         new
                         {
-                            UserId = "5d5814a4-53c4-4396-ad7a-c4ac22aad945",
-                            RoleId = "0083ca6f-7f63-45d7-8777-37b1da9ec52b"
+                            UserId = "ffad3d54-b0c9-4085-8f9c-7dcb3d13bb87",
+                            RoleId = "9cfbe9c2-1a0c-4fa4-8554-1bdde079a7c6"
                         },
                         new
                         {
-                            UserId = "2914d521-9db0-40c0-b0e6-768ca01f27c9",
-                            RoleId = "0083ca6f-7f63-45d7-8777-37b1da9ec52b"
+                            UserId = "1908bcdd-7a4d-4cf0-87dd-83cbe8d932b7",
+                            RoleId = "9cfbe9c2-1a0c-4fa4-8554-1bdde079a7c6"
                         });
                 });
 
@@ -321,10 +321,10 @@ namespace WebApplication1.Migrations
                         {
                             Id = 1,
                             BirthDate = new DateOnly(2000, 10, 10),
-                            Created = new DateTime(2024, 11, 19, 17, 24, 46, 671, DateTimeKind.Local).AddTicks(5935),
-                            Email = "ewabak@gmail.com",
-                            FirstName = "ewa",
-                            LastName = "bak",
+                            Created = new DateTime(2024, 11, 21, 17, 10, 47, 29, DateTimeKind.Local).AddTicks(1958),
+                            Email = "mariannowak@gmail.com",
+                            FirstName = "Marian",
+                            LastName = "Nowak",
                             OrganizationId = 101,
                             PhoneNumber = "497290407"
                         },
@@ -332,12 +332,12 @@ namespace WebApplication1.Migrations
                         {
                             Id = 2,
                             BirthDate = new DateOnly(1997, 10, 10),
-                            Created = new DateTime(2024, 11, 19, 17, 24, 46, 671, DateTimeKind.Local).AddTicks(6000),
-                            Email = "vbsruihbuiwhak@gmail.com",
-                            FirstName = "flf",
-                            LastName = "bhfyuk",
+                            Created = new DateTime(2024, 11, 21, 17, 10, 47, 29, DateTimeKind.Local).AddTicks(2006),
+                            Email = "andrzejkowalski@gmail.com",
+                            FirstName = "Andrzej",
+                            LastName = "Kowalski",
                             OrganizationId = 102,
-                            PhoneNumber = "497085668"
+                            PhoneNumber = "518659624"
                         });
                 });
 
