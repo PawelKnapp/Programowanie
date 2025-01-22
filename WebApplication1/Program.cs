@@ -17,6 +17,11 @@ public class Program
         ///////////////////////////
         builder.Services.AddDbContext<AppDbContext>();
 
+        builder.Services.AddDbContext<MoviesDbContext>(options =>
+            options.UseSqlite(builder.Configuration.GetConnectionString("MoviesDb")));
+
+
+        
         builder.Services.AddDefaultIdentity<IdentityUser>(options =>
                 {
                     options.SignIn.RequireConfirmedAccount = true;

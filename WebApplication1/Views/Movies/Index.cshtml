@@ -1,0 +1,69 @@
+﻿<style>
+    .table td, .table th {
+        word-break: break-word;
+        max-width: 200px;
+    }
+</style>
+
+@model IEnumerable<WebApplication1.Controllers.ActorDetailsViewModel>
+
+<h1>Actors and Their Movies</h1>
+
+<table class="table table-striped table-bordered">
+    <thead class="thead-dark">
+    <tr>
+        <th>Name</th>
+        <th>Movie Count</th>
+        <th>Most Popular Movie</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var actor in Model)
+    {
+    <tr>
+        <td>@actor.Name</td>
+        <td>
+            <a href="@Url.Action("ActorMovies", new { id = actor.Id, returnPage = ViewBag.CurrentPage })">
+                @actor.MovieCount
+            </a>
+        </td>
+        <td>
+            <a href="#" data-bs-toggle="collapse" data-bs-target="#popularMovieCharacters-@actor.Id" aria-expanded="false" aria-controls="popularMovieCharacters-@actor.Id">
+                @actor.MostPopularMovie
+            </a>
+            <div class="collapse" id="popularMovieCharacters-@actor.Id">
+                <ul>
+                    @foreach (var character in actor.PopularMovieCharacters)
+                    {
+                    <li>@character</li>
+                    }
+                </ul>
+            </div>
+        </td>
+    </tr>
+    }
+    </tbody>
+</table>
+
+<nav>
+    <ul class="pagination justify-content-center">
+        <li class="page-item @(ViewBag.CurrentPage == 1 ? "disabled" : "")">
+            <a class="page-link" href="@Url.Action("Index", new { page = 1 })">First</a>
+        </li>
+        <li class="page-item @(ViewBag.CurrentPage == 1 ? "disabled" : "")">
+            <a class="page-link" href="@Url.Action("Index", new { page = ViewBag.CurrentPage - 1 })">Previous</a>
+        </li>
+        @for (int i = Math.Max(1, ViewBag.CurrentPage - 3); i <= Math.Min(ViewBag.TotalPages, ViewBag.CurrentPage + 3); i++)
+        {
+        <li class="page-item @(ViewBag.CurrentPage == i ? "active" : "")">
+            <a class="page-link" href="@Url.Action("Index", new { page = i })">@i</a>
+        </li>
+        }
+        <li class="page-item @(ViewBag.CurrentPage == ViewBag.TotalPages ? "disabled" : "")">
+            <a class="page-link" href="@Url.Action("Index", new { page = ViewBag.CurrentPage + 1 })">Next</a>
+        </li>
+        <li class="page-item @(ViewBag.CurrentPage == ViewBag.TotalPages ? "disabled" : "")">
+            <a class="page-link" href="@Url.Action("Index", new { page = ViewBag.TotalPages })">Last</a>
+        </li>
+    </ul>
+</nav>

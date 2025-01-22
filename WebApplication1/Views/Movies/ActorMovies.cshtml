@@ -1,0 +1,59 @@
+﻿@model IEnumerable<WebApplication1.Controllers.MovieViewModel>
+
+<div class="d-flex justify-content-between mb-3">
+    <h1>Movies for @ViewBag.ActorName</h1>
+    <div>
+        <a class="btn btn-secondary" href="@Url.Action("Index", new { page = ViewBag.ReturnPage })">Back to List</a>
+        <a class="btn btn-primary" href="@Url.Action("AddMovie", new { actorId = ViewBag.ActorId })">Add</a>
+    </div>
+</div>
+
+<table class="table table-striped table-bordered">
+    <thead class="thead-dark">
+    <tr>
+        <th>Title</th>
+        <th>Budget</th>
+        <th>Popularity</th>
+        <th>Homepage</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var movie in Model)
+    {
+    <tr>
+        <td>@movie.Title</td>
+        <td>@movie.Budget</td>
+        <td>@movie.Popularity</td>
+        <td>
+            @if (!string.IsNullOrEmpty(movie.Homepage))
+            {
+            <a href="@movie.Homepage" target="_blank">@movie.Homepage</a>
+            }
+        </td>
+    </tr>
+    }
+    </tbody>
+</table>
+
+<nav>
+    <ul class="pagination justify-content-center">
+        <li class="page-item @(ViewBag.CurrentPage == 1 ? "disabled" : "")">
+            <a class="page-link" href="@Url.Action("ActorMovies", new { id = ViewBag.ActorId, page = 1 })">First</a>
+        </li>
+        <li class="page-item @(ViewBag.CurrentPage == 1 ? "disabled" : "")">
+            <a class="page-link" href="@Url.Action("ActorMovies", new { id = ViewBag.ActorId, page = ViewBag.CurrentPage - 1 })">Previous</a>
+        </li>
+        @for (int i = Math.Max(1, ViewBag.CurrentPage - 3); i <= Math.Min(ViewBag.TotalPages, ViewBag.CurrentPage + 3); i++)
+        {
+        <li class="page-item @(ViewBag.CurrentPage == i ? "active" : "")">
+            <a class="page-link" href="@Url.Action("ActorMovies", new { id = ViewBag.ActorId, page = i })">@i</a>
+        </li>
+        }
+        <li class="page-item @(ViewBag.CurrentPage == ViewBag.TotalPages ? "disabled" : "")">
+            <a class="page-link" href="@Url.Action("ActorMovies", new { id = ViewBag.ActorId, page = ViewBag.CurrentPage + 1 })">Next</a>
+        </li>
+        <li class="page-item @(ViewBag.CurrentPage == ViewBag.TotalPages ? "disabled" : "")">
+            <a class="page-link" href="@Url.Action("ActorMovies", new { id = ViewBag.ActorId, page = ViewBag.TotalPages })">Last</a>
+        </li>
+    </ul>
+</nav>
