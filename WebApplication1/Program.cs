@@ -24,7 +24,7 @@ public class Program
         
         builder.Services.AddDefaultIdentity<IdentityUser>(options =>
                 {
-                    options.SignIn.RequireConfirmedAccount = true;
+                    options.SignIn.RequireConfirmedAccount = false;
                     options.Password.RequiredLength = 5;
                     options.Password.RequireDigit = false;
                     options.Password.RequireNonAlphanumeric = false;
