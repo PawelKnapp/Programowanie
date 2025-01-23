@@ -7,7 +7,6 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
-    [Authorize]
     public class MoviesController : Controller
     {
         private readonly MoviesDbContext _context;
