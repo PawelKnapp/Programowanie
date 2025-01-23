@@ -17,8 +17,6 @@ namespace WebApplication1.Controllers
             _context = context;
             Console.WriteLine($"Using database at: {_context.Database.GetConnectionString()}");
         }
-
-        // 1. Lista aktorów z filmami
         public async Task<IActionResult> Index(int page = 1, int pageSize = 20)
         {
             try
@@ -28,18 +26,16 @@ namespace WebApplication1.Controllers
                     .Select(mc => mc.PersonId)
                     .Distinct()
                     .CountAsync();
-
-                // Pobieramy dane bez GroupBy
+                
                 var movieCasts = await _context.MovieCasts
                     .AsNoTracking()
                     .Include(mc => mc.Movie)
                     .Include(mc => mc.Actor)
                     .ToListAsync();
-
-                // Grupowanie i sortowanie w pamięci
+                
                 var groupedActors = movieCasts
                     .GroupBy(mc => mc.PersonId)
-                    .OrderBy(g => g.FirstOrDefault()?.Actor?.Name) // Sortowanie po nazwie aktora
+                    .OrderBy(g => g.FirstOrDefault()?.Actor?.Name)
                     .Skip((page - 1) * pageSize)
                     .Take(pageSize)
                     .Select(g => new ActorDetailsViewModel
@@ -53,7 +49,7 @@ namespace WebApplication1.Controllers
                         PopularMovieCharacters = g
                             .OrderByDescending(mc => mc.Movie.Popularity)
                             .Select(mc => mc.CharacterName)
-                            .Take(3) // Pobieramy 3 najpopularniejsze postacie
+                            .Take(3)
                             .ToList()
                     })
                     .ToList();
@@ -69,8 +65,7 @@ namespace WebApplication1.Controllers
                 return StatusCode(500, "Internal server error");
             }
         }
-
-        // 2. Lista filmów dla aktora
+        
         public async Task<IActionResult> ActorMovies(int id, int page = 1, int pageSize = 20, int returnPage = 1)
         {
             try
@@ -87,8 +82,7 @@ namespace WebApplication1.Controllers
                 }
 
                 var totalMovies = actor.MovieCasts.Count;
-
-                // Sprawdzenie, czy obecna strona nie przekracza dostępnych stron
+                
                 var totalPages = (int)Math.Ceiling(totalMovies / (double)pageSize);
                 if (page > totalPages && totalPages > 0)
                 {
@@ -113,7 +107,7 @@ namespace WebApplication1.Controllers
                 ViewBag.ActorId = actor.Id;
                 ViewBag.CurrentPage = page;
                 ViewBag.TotalPages = totalPages;
-                ViewBag.ReturnPage = returnPage; // Numer strony, z której użytkownik przyszedł
+                ViewBag.ReturnPage = returnPage;
 
                 return View(movies);
             }
@@ -124,7 +118,6 @@ namespace WebApplication1.Controllers
             }
         }
         
-        // 3. Formularz dodawania filmu
         [HttpGet]
         public IActionResult AddMovie(int actorId)
         {
